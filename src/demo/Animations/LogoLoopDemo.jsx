@@ -50,7 +50,6 @@ const LogoLoopDemo = () => {
   const [fadeOut, setFadeOut] = useState(true);
   const [scaleOnHover, setScaleOnHover] = useState(true);
   const [direction, setDirection] = useState('left');
-  const [useCustomRender, setUseCustomRender] = useState(false);
 
   const directionOptions = [
     { value: 'left', label: 'Left' },
@@ -72,6 +71,13 @@ const LogoLoopDemo = () => {
       default: '120',
       description:
         'Animation speed in pixels per second. Positive values move based on direction, negative values reverse direction.'
+    },
+    {
+      name: 'hoverSpeed',
+      type: 'number | undefined',
+      default: '0',
+      description:
+        'Speed when hovering over the component. Set to 0 to pause, or a lower value for deceleration effect.'
     },
     {
       name: 'direction',
@@ -99,13 +105,6 @@ const LogoLoopDemo = () => {
       description: 'Gap between logos in pixels.'
     },
     {
-      name: 'hoverSpeed',
-      type: 'number | undefined',
-      default: '0',
-      description:
-        'Speed when hovering over the component. Set to 0 to pause, or a lower value for deceleration effect.'
-    },
-    {
       name: 'fadeOut',
       type: 'boolean',
       default: 'false',
@@ -128,7 +127,7 @@ const LogoLoopDemo = () => {
       type: '(item: LogoItem, key: React.Key) => React.ReactNode',
       default: 'undefined',
       description:
-        'Custom render function for each logo item. Allows full control over item rendering for animations, tooltips, etc.'
+        'Optional Custom render function for each logo item. Allows full control over item rendering for unique animations, tooltips, etc.'
     },
     {
       name: 'ariaLabel',
@@ -167,26 +166,6 @@ const LogoLoopDemo = () => {
             fadeOut={fadeOut}
             fadeOutColor="#060010"
             ariaLabel="Our tech stack"
-            renderItem={
-              useCustomRender
-                ? item => (
-                    <div
-                      style={{
-                        padding: '8px',
-                        border: '2px solid #8b5cf6',
-                        borderRadius: '8px',
-                        background: 'rgba(139, 92, 246, 0.1)'
-                      }}
-                    >
-                      {'node' in item ? (
-                        item.node
-                      ) : (
-                        <img src={item.src} alt={item.alt} style={{ height: `${logoHeight}px` }} />
-                      )}
-                    </div>
-                  )
-                : undefined
-            }
           />
         </Box>
 
@@ -267,15 +246,6 @@ const LogoLoopDemo = () => {
             isChecked={scaleOnHover}
             onChange={checked => {
               setScaleOnHover(checked);
-              forceRerender();
-            }}
-          />
-
-          <PreviewSwitch
-            title="Use Custom Render"
-            isChecked={useCustomRender}
-            onChange={checked => {
-              setUseCustomRender(checked);
               forceRerender();
             }}
           />

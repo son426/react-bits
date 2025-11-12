@@ -144,12 +144,12 @@ export const LogoLoop = memo(
   ({
     logos,
     speed = 120,
+    hoverSpeed,
     direction = 'left',
     width = '100%',
     logoHeight = 28,
     gap = 32,
     pauseOnHover,
-    hoverSpeed,
     fadeOut = false,
     fadeOutColor,
     scaleOnHover = false,

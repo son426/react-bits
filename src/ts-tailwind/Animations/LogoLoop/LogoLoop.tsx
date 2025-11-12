@@ -21,12 +21,12 @@ export type LogoItem =
 export interface LogoLoopProps {
   logos: LogoItem[];
   speed?: number;
+  hoverSpeed?: number;
   direction?: 'left' | 'right' | 'up' | 'down';
   width?: number | string;
   logoHeight?: number;
   gap?: number;
   pauseOnHover?: boolean;
-  hoverSpeed?: number;
   fadeOut?: boolean;
   fadeOutColor?: string;
   scaleOnHover?: boolean;
