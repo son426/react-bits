@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { CodeTab, PreviewTab, TabsLayout } from '../../components/common/TabsLayout';
-import { Box } from '@chakra-ui/react';
+import { Box, Flex, Input, Text } from '@chakra-ui/react';
 
 import Customize from '../../components/common/Preview/Customize';
 import CodeExample from '../../components/code/CodeExample';
@@ -50,6 +50,7 @@ const LogoLoopDemo = () => {
   const [fadeOut, setFadeOut] = useState(true);
   const [scaleOnHover, setScaleOnHover] = useState(true);
   const [direction, setDirection] = useState('left');
+  const [fadeOutColor, setFadeOutColor] = useState('#060010');
 
   const directionOptions = [
     { value: 'left', label: 'Left' },
@@ -164,7 +165,7 @@ const LogoLoopDemo = () => {
             scaleOnHover={scaleOnHover}
             hoverSpeed={hoverSpeed}
             fadeOut={fadeOut}
-            fadeOutColor="#060010"
+            fadeOutColor={fadeOutColor}
             ariaLabel="Our tech stack"
           />
         </Box>
@@ -240,6 +241,20 @@ const LogoLoopDemo = () => {
               forceRerender();
             }}
           />
+
+          {fadeOut && (
+            <Flex gap={4} align="center" mt={4}>
+              <Text fontSize="sm">Fade Out Color</Text>
+              <Input
+                type="color"
+                value={fadeOutColor}
+                onChange={e => {
+                  setFadeOutColor(e.target.value);
+                }}
+                width="50px"
+              />
+            </Flex>
+          )}
 
           <PreviewSwitch
             title="Scale on Hover"
