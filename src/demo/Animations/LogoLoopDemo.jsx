@@ -50,7 +50,6 @@ const LogoLoopDemo = () => {
   const [fadeOut, setFadeOut] = useState(true);
   const [scaleOnHover, setScaleOnHover] = useState(true);
   const [direction, setDirection] = useState('left');
-  const [useCustomRender, setUseCustomRender] = useState(false);
 
   const directionOptions = [
     { value: 'left', label: 'Left' },
@@ -167,26 +166,6 @@ const LogoLoopDemo = () => {
             fadeOut={fadeOut}
             fadeOutColor="#060010"
             ariaLabel="Our tech stack"
-            renderItem={
-              useCustomRender
-                ? item => (
-                    <div
-                      style={{
-                        padding: '8px',
-                        border: '2px solid #8b5cf6',
-                        borderRadius: '8px',
-                        background: 'rgba(139, 92, 246, 0.1)'
-                      }}
-                    >
-                      {'node' in item ? (
-                        item.node
-                      ) : (
-                        <img src={item.src} alt={item.alt} style={{ height: `${logoHeight}px` }} />
-                      )}
-                    </div>
-                  )
-                : undefined
-            }
           />
         </Box>
 
@@ -267,15 +246,6 @@ const LogoLoopDemo = () => {
             isChecked={scaleOnHover}
             onChange={checked => {
               setScaleOnHover(checked);
-              forceRerender();
-            }}
-          />
-
-          <PreviewSwitch
-            title="Use Custom Render"
-            isChecked={useCustomRender}
-            onChange={checked => {
-              setUseCustomRender(checked);
               forceRerender();
             }}
           />

@@ -49,6 +49,31 @@ function App() {
         hoverSpeed={20}
         fadeOut
       />
+
+      {/* Custom rendering to add a border and background */}
+      <LogoLoop
+        logos={techLogos}
+        speed={100}
+        logoHeight={48}
+        gap={24}
+        renderItem={item => (
+          <div
+            style={{
+              padding: '8px',
+              border: '2px solid #8b5cf6',
+              borderRadius: '8px',
+              background: 'rgba(139, 92, 246, 0.1)',
+              cursor: 'pointer'
+            }}
+          >
+            {'node' in item ? (
+              item.node
+            ) : (
+              <img src={item.src} alt={item.alt} style={{ height: '48px' }} />
+            )}
+          </div>
+        )}
+      />
     </div>
   );
 }`,
